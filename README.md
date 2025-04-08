@@ -47,3 +47,16 @@ You can use the included SCM plugins directly in a declarative pipeline:
             }
         }
 ```
+**Environment Variables for Current Setup**<br>
+```
+#env.list
+JENKINS_SERVER_URL=http://localhost
+JENKINS_SERVER_PORT=8080
+JENKINS_SERVER_ARTIFACT_BACKUP_DIR=/var/jenkins_home/artifacts
+JENKINS_SERVER_JOB_XML_DIR=/var/jenkins_home/job_descriptions
+JENKINS_SERVER_SCM_CREDENTIALS_PRIVATE_KEY=/var/jenkins_home/scm_credentials/id_rsa
+JENKINS_SERVER_SCM_USERNAME=kaleb-horvath
+JENKINS_SERVER_SCM_CREDENTIALS_ID=jenkins-scm-identity 
+```
+*NOTE: `setup.sh` assumes the above environment, and makes other assumptions*
+*NOTE: `Dockerfile` assumes the above environment, changing the environment will not change the behavior of the docker build, but only what the Jenkins server uses*
