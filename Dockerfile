@@ -36,9 +36,6 @@ RUN mkdir -p /var/jenkins_home/artifacts
 RUN mkdir -p /var/jenkins_home/scm_credentials
 RUN mkdir -p /var/jenkins_home/job_descriptions
 
-
-COPY ./assets/jenkins-cli.jar /var/jenkins_home/
-
 # Copy Jenkins plugins
 COPY --chown=jenkins:jenkins ./plugins.txt /usr/share/jenkins/plugins.txt
 RUN jenkins-plugin-cli -f /usr/share/jenkins/plugins.txt  
