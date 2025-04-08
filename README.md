@@ -26,3 +26,23 @@ Configure `jenkins-scm-identity` in the credentials manager with the script that
 ```
 jenkins@containerId:/$ java -jar /var/jenkins_home/jenkins-cli.jar -s http://localhost:8080 -auth admin:admin groovy = < /var/jenkins_home/init.groovy.d/configure-ssh-credentials.groovy
 ```
+**SCM in Declarative Pipeline**
+You can use the included SCM plugins directly in a declarative pipeline:
+```
+        stage('Checkout Source') {
+            steps {
+                script {
+                    def branches = BRANCHES.split(',')
+                    branches.each { branch -> 
+                        checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: "*/${branch.trim()}"]],
+                            userRemoteConfigs: [[
+                                url: "git@github.com:${SCM_USERNAME}/${SCM_REMOTE_NAME}",
+                                credentialsId: "${SCM_CREDENTIALS_ID}"
+                            ]]
+                        ])}
+                }
+            }
+        }
+```groovy
