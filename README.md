@@ -28,7 +28,7 @@ jenkins@containerId:/$ java -jar /var/jenkins_home/jenkins-cli.jar -s http://loc
 ```
 **SCM in Declarative Pipeline**
 You can use the included SCM plugins directly in a declarative pipeline:
-```
+```groovy
         stage('Checkout Source') {
             steps {
                 script {
@@ -45,4 +45,4 @@ You can use the included SCM plugins directly in a declarative pipeline:
                 }
             }
         }
-```groovy
+```
