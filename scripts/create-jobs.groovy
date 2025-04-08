@@ -3,7 +3,7 @@ import hudson.model.*
 import java.io.*
 
 
-def jobsDirectory = '/var/jenkins_home/job_descriptions/'
+def jobsDirectory = System.getenv('JENKINS_SERVER_JOB_XML_DIR')
 def jenkinsInstance = Jenkins.instance 
 
 new File(jobsDirectory).eachFile { file -> 

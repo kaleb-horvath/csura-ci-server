@@ -5,25 +5,23 @@ import com.cloudbees.plugins.credentials.CredentialsScope
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey.DirectEntryPrivateKeySource
 import hudson.plugins.sshslaves.*
 
-// Path to the SSH private key file
-def privateKeyPath = '/var/jenkins_home/scm_credentials/id_rsa'
-
-// Read the private key content
+def privateKeyPath = System.getenv('JENKINS_SERVER_SCM_CREDENTIALS_PRIVATE_KEY')
 def privateKeyContent = new File(privateKeyPath).text
 
-// Define the credentials ID and description
-def credentialId = 'jenkins-scm-identity'
-def description = 'SSH Key for GitHub Access'
+def credentialId = System.getenv('JENKINS_SERVER_SCM_CREDENTIALS_ID')
+def description = 'SSH Key for remote VCS provider access'
 
-// Create the SSH key credential
-def privateKeySource = new DirectEntryPrivateKeySource(privateKeyContent) // Use the correct source type for private key content
+def username = System.getenv('JENKINS_SERVER_SCM_USERNAME')
+
+
+def privateKeySource = new DirectEntryPrivateKeySource(privateKeyContent)
 
 def sshCredential = new BasicSSHUserPrivateKey(
     CredentialsScope.GLOBAL,
     credentialId,
-    'kaleb-horvath', // Username for the SSH connection
-    privateKeySource,  // Pass the private key wrapped as a PrivateKeySource
-    null,              // Passphrase if any (null if none)
+    username, 
+    privateKeySource,  
+    null,              // passphrase (none for now)
     description
 )
 

@@ -6,6 +6,7 @@ $ docker build --no-cache -t jenkins:v1 .
 $ docker run -d \
     -v jenkins_home:/var/jenkins_home \
     --name jenkins-server \
+    --env-file env.list
     -p 8080:8080 jenkins:v1 
 
 ```
