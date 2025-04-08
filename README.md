@@ -9,8 +9,7 @@ $ docker run -d \
     -p 8080:8080 jenkins:v1 
 
 ```
-**Bootstrap SSH Credentials for SCM**
-<hr>
+**Bootstrap SSH Credentials for SCM**<br>
 Copy keypair files and launch a shell on the server.
 ```
 $ docker cp /path/to/ssh/creds/* jenkins-server:/var/jenkins_home/scm_credentials
@@ -27,8 +26,7 @@ Configure `jenkins-scm-identity` in the credentials manager with the script that
 ```
 jenkins@containerId:/$ java -jar /var/jenkins_home/jenkins-cli.jar -s http://localhost:8080 -auth admin:admin groovy = < /var/jenkins_home/init.groovy.d/configure-ssh-credentials.groovy
 ```
-**SCM in Declarative Pipeline**
-<hr>
+**SCM in Declarative Pipeline**<br>
 You can use the included SCM plugins directly in a declarative pipeline:
 ```groovy
         stage('Checkout Source') {
